@@ -8,7 +8,7 @@
 //  0. Obtain this file from https://github.com/ankur-cp/largest-palindrome-solution
 //  1. Rename this file, substituting "yourname" with your name
 //  2. Replace "yourname" with your name in the variable below
-exports.name = "yourname";
+exports.name = "Kana";
 //  3. Add your optimizations to the solution below
 //  4. Submit a pull request
 
@@ -25,18 +25,27 @@ exports.getLargestPalindrome = (N) => {
   let largestPalindrome = 0;
 
   // iterate through range of multiplicands
-  for (let i = 10 ** (N - 1); i < 10 ** N; i++) {
+  let smallNum = 10 ** (N - 1);
+  let bigNum = 10 ** N;
+  // for (let i = smallNum; i < bigNum; i++) {
       
-    for (let j = 10 ** (N - 1); j < 10 ** N; j++) {
+  //   for (let j = i; j < bigNum; j++) {
 
-      // check if the product is a palindrome
-      if (isPalindrome(i * j)) {
+    for (let i = bigNum; i > smallNum; i--) {
+      
+      for (let j = bigNum; j > i; j--) {
 
-        // check if it's larger than our largest palindrome
-        if (i * j > largestPalindrome) {
-                  
-          // update largest palindrome
-          largestPalindrome = i * j;
+      let product = i * j
+      if (product > largestPalindrome) {
+        // check if the product is a palindrome
+        if (isPalindrome(product)) {
+  
+          // check if it's larger than our largest palindrome
+          if (product > largestPalindrome) {
+                    
+            // update largest palindrome
+            largestPalindrome = product;
+          }
         }
       }
     }
